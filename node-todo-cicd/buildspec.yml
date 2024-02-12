@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 16
+    commands:
+      - npm install # Example for Node.js project, adjust for your project's needs
+
+  build:
+    commands:
+      - echo "dependency installed"
+      - echo "converting scripts files to unix files"
+      - sudo apt-get install dos2unix
+      - dos2unix after_install.sh
+      - dos2unix application_start.sh
+      - dos2unix application_stop.sh
+
+artifacts:
+  files:
+    - '**/*' # Include all files in the artifact
+
+cache:
+  paths:
+    - node_modules/ # Cache node_modules directory to speed up builds
